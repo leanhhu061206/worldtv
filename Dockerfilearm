@@ -1,0 +1,14 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+ENV OMP_NUM_THREADS=1
+
+RUN pip install --no-cache-dir pytesseract Pillow
+
+COPY livetv.so .
+COPY run.py .
+
+EXPOSE 7860
+
+CMD ["python", "runarm.py"]
