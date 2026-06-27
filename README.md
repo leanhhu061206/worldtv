@@ -4,6 +4,20 @@ Server proxy che autentica e ritrasmette stream WebM per usarli in VLC/MPV/IINA.
 
 Aprendo il pannello web trovi le liste TV pronte da copiare per ogni paese.
 
+## Con Docker (x86/amd64)
+
+```bash
+docker build -f Dockerfile -t livetv .
+docker run -d --name livetv --restart unless-stopped -p 8042:8042 livetv
+```
+
+## Con Docker (ARM)
+
+```bash
+docker build -f Dockerfilearm -t livetv-arm .
+docker run -d --name livetv --restart unless-stopped -p 8042:8042 livetv-arm
+```
+
 ## Su Hugging Face Spaces
 
 1. Crea uno Space con **Docker**.
