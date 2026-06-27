@@ -1,0 +1,18 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY livetv.so run.py ./
+RUN ls -la /app/ && python3 -c "
+import os
+print('livetv.so exists:', os.path.exists('/app/livetv.so'))
+print('size:', os.path.getsize('/app/livetv.so'))
+import importlib.util as u
+s = u.spec_from_file_location('x', '/app/livetv.so')
+print('spec:', s)
+if s:
+    try:
+        m = u.module_from_spec(s)
+        s.loader.exec_module(m)
+        print('LOAD OK')
+    except Exception as e:
+        print('LOAD ERROR:', e)
+"
