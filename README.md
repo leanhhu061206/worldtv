@@ -8,15 +8,17 @@ Aprendo il pannello web trovi le liste TV pronte da copiare per ogni paese.
 
 ```bash
 docker build -f Dockerfile -t livetv .
-docker run -d --name livetv --restart unless-stopped -p 8042:8042 livetv
+docker run -d --name livetv --restart unless-stopped -p 8042:8042 -e PORT=8042 livetv
 ```
 
 ## Con Docker (ARM)
 
 ```bash
 docker build -f Dockerfilearm -t livetv-arm .
-docker run -d --name livetv --restart unless-stopped -p 8042:8042 livetv-arm
+docker run -d --name livetv --restart unless-stopped -p 8042:8042 -e PORT=8042 livetv-arm
 ```
+
+> La porta si cambia con la variabile d'ambiente `PORT` (es. `-e PORT=8080`, e mappa `-p 8080:8080`).
 
 ## Su Hugging Face Spaces
 
