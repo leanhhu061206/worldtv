@@ -4,6 +4,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends tesseract-ocr &
 RUN pip install --no-cache-dir pytesseract Pillow
 COPY livetv.so .
 COPY run.py .
-RUN python3 -c "import ctypes,os; f='/app/livetv.so'; print('size:',os.path.getsize(f)); ctypes.cdll.LoadLibrary(f); print('-- LIVETV.SO CARICATO OK --')" 2>&1 || ( python3 -c "import os; print('FILE ESISTE:', os.path.exists('/app/livetv.so'))"; exit 1 )
 EXPOSE 7860
 CMD ["python", "run.py"]
